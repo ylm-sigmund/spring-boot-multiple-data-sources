@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.diy.sigmund.springbootmultipledatasources.mapper.flower.AdmireMapper">
+    <resultMap id="BaseResultMap" type="com.diy.sigmund.springbootmultipledatasources.entity.AdmireDO">
+        <id column="admireId" jdbcType="INTEGER" property="admireid"/>
+        <result column="trueName" jdbcType="VARCHAR" property="truename"/>
+        <result column="tel" jdbcType="VARCHAR" property="tel"/>
+        <result column="sex" jdbcType="CHAR" property="sex"/>
+        <result column="birth" jdbcType="DATE" property="birth"/>
+        <result column="job" jdbcType="VARCHAR" property="job"/>
+        <result column="income" jdbcType="DOUBLE" property="income"/>
+        <result column="marital" jdbcType="CHAR" property="marital"/>
+        <result column="flower" jdbcType="INTEGER" property="flower"/>
+        <result column="image" jdbcType="VARCHAR" property="image"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+    admireId, trueName, tel, sex, birth, job, income, marital, flower, image
+  </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from admire
+        where admireId = #{admireid,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from admire
+    where admireId = #{admireid,jdbcType=INTEGER}
+  </delete>
+    <insert id="insert" parameterType="com.diy.sigmund.springbootmultipledatasources.entity.AdmireDO">
+    insert into admire (admireId, trueName, tel,
+      sex, birth, job, income,
+      marital, flower, image
+      )
+    values (#{admireid,jdbcType=INTEGER}, #{truename,jdbcType=VARCHAR}, #{tel,jdbcType=VARCHAR},
+      #{sex,jdbcType=CHAR}, #{birth,jdbcType=DATE}, #{job,jdbcType=VARCHAR}, #{income,jdbcType=DOUBLE},
+      #{marital,jdbcType=CHAR}, #{flower,jdbcType=INTEGER}, #{image,jdbcType=VARCHAR}
+      )
+  </insert>
+    <insert id="insertSelective" parameterType="com.diy.sigmund.springbootmultipledatasources.entity.AdmireDO">
+        insert into admire
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="admireid != null">
+                admireId,
+            </if>
+            <if test="truename != null">
+                trueName,
+            </if>
+            <if test="tel != null">
+                tel,
+            </if>
+            <if test="sex != null">
+                sex,
+            </if>
+            <if test="birth != null">
+                birth,
+            </if>
+            <if test="job != null">
+                job,
+            </if>
+            <if test="income != null">
+                income,
+            </if>
+            <if test="marital != null">
+                marital,
+            </if>
+            <if test="flower != null">
+                flower,
+            </if>
+            <if test="image != null">
+                image,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="admireid != null">
+                #{admireid,jdbcType=INTEGER},
+            </if>
+            <if test="truename != null">
+                #{truename,jdbcType=VARCHAR},
+            </if>
+            <if test="tel != null">
+                #{tel,jdbcType=VARCHAR},
+            </if>
+            <if test="sex != null">
+                #{sex,jdbcType=CHAR},
+            </if>
+            <if test="birth != null">
+                #{birth,jdbcType=DATE},
+            </if>
+            <if test="job != null">
+                #{job,jdbcType=VARCHAR},
+            </if>
+            <if test="income != null">
+                #{income,jdbcType=DOUBLE},
+            </if>
+            <if test="marital != null">
+                #{marital,jdbcType=CHAR},
+            </if>
+            <if test="flower != null">
+                #{flower,jdbcType=INTEGER},
+            </if>
+            <if test="image != null">
+                #{image,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective"
+            parameterType="com.diy.sigmund.springbootmultipledatasources.entity.AdmireDO">
+        update admire
+        <set>
+            <if test="truename != null">
+                trueName = #{truename,jdbcType=VARCHAR},
+            </if>
+            <if test="tel != null">
+                tel = #{tel,jdbcType=VARCHAR},
+            </if>
+            <if test="sex != null">
+                sex = #{sex,jdbcType=CHAR},
+            </if>
+            <if test="birth != null">
+                birth = #{birth,jdbcType=DATE},
+            </if>
+            <if test="job != null">
+                job = #{job,jdbcType=VARCHAR},
+            </if>
+            <if test="income != null">
+                income = #{income,jdbcType=DOUBLE},
+            </if>
+            <if test="marital != null">
+                marital = #{marital,jdbcType=CHAR},
+            </if>
+            <if test="flower != null">
+                flower = #{flower,jdbcType=INTEGER},
+            </if>
+            <if test="image != null">
+                image = #{image,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where admireId = #{admireid,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.diy.sigmund.springbootmultipledatasources.entity.AdmireDO">
+    update admire
+    set trueName = #{truename,jdbcType=VARCHAR},
+      tel = #{tel,jdbcType=VARCHAR},
+      sex = #{sex,jdbcType=CHAR},
+      birth = #{birth,jdbcType=DATE},
+      job = #{job,jdbcType=VARCHAR},
+      income = #{income,jdbcType=DOUBLE},
+      marital = #{marital,jdbcType=CHAR},
+      flower = #{flower,jdbcType=INTEGER},
+      image = #{image,jdbcType=VARCHAR}
+    where admireId = #{admireid,jdbcType=INTEGER}
+  </update>
+
+</mapper>

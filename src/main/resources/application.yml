@@ -1,0 +1,85 @@
+spring:
+  datasource:
+    web:
+      driver-class-name: oracle.jdbc.OracleDriver
+      url: jdbc:oracle:thin:@192.168.92.100:1521:orcl
+      username: web
+      password: 123456
+      #在连接池启动时要建立的连接数
+      initialSize: 5
+      #连接池中的最大活跃连接数
+      maxActive: 20
+      #连接池里始终应该保持的最小连接数(用于DBCP和Tomcat连接池)
+      minIdle: 5
+      #连接池中的最大空闲连接数
+      maxIdle: 10
+      #连接池在等待返回连接时，最长等待多少毫秒再抛出异常
+      maxWait: 30000
+      #从连接池中借用连接时是否要进行测试
+      testOnBorrow: true
+      #在将连接归还到连接池时是否要进行测试
+      testOnReturn: false
+      #在连接空闲时是否要进行测试
+      testWhileIdle: true
+      #在两次空闲连接验证、弃用连接清理和空闲池大小调整之间睡眠的毫秒数
+      timeBetweenEvictionRunsMillis: 5000
+      #一个空闲连接被空闲连接释放器（如果存在的话）优雅地释放前，最短会在连接池里停 留多少毫秒。
+      minEvictableIdleTimeMillis: 300000
+      #在连接池里的连接返回给调用者或连接池时，要执行的验证 SQL 查询
+      #客户端在使用一个无效的连接时会先对该连接进行测试，如果发现该连接已经无效，则重新从连接池获取有效数据库连接来使用
+      validation-query: select 1 from dual
+      #执行连接验证的间隔时间，单位为毫秒
+      validationInterval: 30000
+      #被弃用的连接在到达弃用超时后是否应该被移除
+      removeAbandoned: true
+      #连接在多少秒后应该考虑弃用
+      removeAbandonedTimeout: 120
+      #连接的默认事务隔离级别,未设置（2？）
+      #defaultTransactionIsolation: -1
+    deploy:
+      driver-class-name: oracle.jdbc.OracleDriver
+      url: jdbc:oracle:thin:@192.168.92.100:1521:orcl
+      username: deploy
+      password: 123456
+      initialSize: 5
+      maxActive: 20
+      minIdle: 5
+      maxIdle: 10
+      maxWait: 30000
+      testOnBorrow: true
+      testOnReturn: false
+      testWhileIdle: true
+      timeBetweenEvictionRunsMillis: 5000
+      minEvictableIdleTimeMillis: 300000
+      validation-query: select 1 from dual
+      validationInterval: 30000
+      removeAbandoned: true
+      removeAbandonedTimeout: 120
+    flower:
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      url: jdbc:mysql://localhost:3306/flower?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=GMT%2B8
+      username: root
+      password:
+      initialSize: 5
+      maxActive: 20
+      minIdle: 5
+      maxIdle: 10
+      maxWait: 30000
+      testOnBorrow: true
+      testOnReturn: false
+      testWhileIdle: true
+      timeBetweenEvictionRunsMillis: 5000
+      minEvictableIdleTimeMillis: 300000
+      validation-query: select 1
+      validationInterval: 30000
+      removeAbandoned: true
+      removeAbandonedTimeout: 120
+  mvc:
+    view:
+      prefix: classpath:templates/
+      suffix: .html
+
+server:
+  port: 8080
+  servlet:
+    context-path: /api/demo

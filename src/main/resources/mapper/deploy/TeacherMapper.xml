@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.diy.sigmund.springbootmultipledatasources.mapper.deploy.TeacherMapper">
+    <select id="getAll" resultType="com.diy.sigmund.springbootmultipledatasources.entity.TeacherDO">
+        select userid, username, age, phone
+        from teacher
+    </select>
+
+    <update id="updateTeacherDOByUserId" parameterType="com.diy.sigmund.springbootmultipledatasources.entity.TeacherDO">
+        update teacher
+        set age = #{age,jdbcType=NUMERIC}
+        where userid = #{userId,jdbcType=NUMERIC}
+    </update>
+
+    <select id="getWebStudent" resultType="com.diy.sigmund.springbootmultipledatasources.entity.StudentDO"
+            useCache="false" statementType="STATEMENT" timeout="5000" databaseId="oracle">
+        select userid, username, age, phone
+        from ${web}student
+    </select>
+
+</mapper>
